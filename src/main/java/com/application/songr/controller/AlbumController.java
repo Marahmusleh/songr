@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 public class AlbumController {
   @Autowired
-     AlbumRepository repo;
+     AlbumRepository albumRepository;
 
 
 //    @GetMapping("/albums")
@@ -32,18 +32,22 @@ public class AlbumController {
 //        return "albums";
 //    }
 
-    @GetMapping ("/albums")
-    public String getAlbum(Model model){
-        List<Album> albums = repo.findAll();
-        model.addAttribute("Albums",albums);
+    @GetMapping("/albums")
+    public String showAlbums(Model model) {
+        model.addAttribute("albums", albumRepository.findAll());
         return "albums";
     }
 
-    @PostMapping("/albums")
-    public RedirectView createAlbum(@ModelAttribute Album album) {
-        Album newALbum = new Album();
-        repo.save(newALbum);
-        return new RedirectView("albums");
+    @GetMapping("/form")
+    public String getAlbumList(Model model) {
+        return "form";
+    }
+
+    @PostMapping("/form")
+    public RedirectView addAlbum(@ModelAttribute Album album, Model model) {
+        model.addAttribute("albums", album);
+        albumRepository.save(album);
+        return new RedirectView("/albums");
     }
 
 

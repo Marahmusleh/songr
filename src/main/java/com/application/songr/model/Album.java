@@ -1,7 +1,6 @@
 package com.application.songr.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 @Entity  //no @Table annotation exists, it is assumed that this entity is mapped to a table named Album
 //every class such a table and every class need a repository interface to implement the methods of crud
@@ -13,6 +12,9 @@ public class Album {
     private int length;
     private String imageUrl;
     private String artist;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     public Album(String title,  String artist ,int songCount, int length, String imageUrl) {
@@ -82,7 +84,6 @@ public class Album {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }
