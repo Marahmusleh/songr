@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form  th:action="@{/getSongToAlbum(artist=${artist})}" th:object="${MySong}" method="post">
+  <p>Title : <input type="text" field="*{title}" name="title" height="400px" /></p>
+  <p>Track Number : <input type="number" field="*{trackNumber}"  name="trackNumber" height="400px" /></p>
+  <p>Length : <input type="number" field="*{length}" name="length" height="400px" /></p>
+  <p><input type="submit" value="Submit" /> </p>
+</form>
+
+</body>
+</html>

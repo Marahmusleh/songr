@@ -17,6 +17,8 @@ public class Album {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
 
     public Album(String title,  String artist ,int songCount, int length, String imageUrl) {
         this.title = title;
@@ -25,6 +27,14 @@ public class Album {
         this.length = length;
         this.imageUrl = imageUrl;
     } //constructor is the one you use to create instances of Album to be saved to the database.
+    public Album(String title, String artist, int songCount, String imageUrl, int length, List songs) {
+        this.title = title;
+        this.artist = artist;
+        this.songCount = songCount;
+        this.imageUrl = imageUrl;
+        this.length = length;
+        this.songs = songs;
+    }
 
     public Album() {
 //The default constructor exists only for the sake of JPA.
@@ -68,6 +78,14 @@ public class Album {
 
     public void setArtist(String artist) {
         this.artist = artist;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     @Override
