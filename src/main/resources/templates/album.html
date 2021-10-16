@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+<div th:each="album: ${album}">
+    <img th:src ="${album.imageUrl}" width="50%" alt="img">
+    <h1  th:text="'Artist :'+' '+ ${album.artist}"></h1>
+    <h2 th:text="'Title : '+' '+ ${album.title}"></h2>
+    <h2 th:text="'SongCount :' +' '+ ${album.songCount}"></h2>
+    <h2 th:text="'Length :' +' '+ ${album.length}"></h2>
+</div>
+</center>
+
+
+<center>
+<h1>Songs</h1>
+
+<img src="https://joyofandroid.com/wp-content/uploads/2020/04/muviz-edge-music-visualization-apps-small.gif" width="80%">
+
+
+
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Track Number</th>
+        <th>Length</th>
+    </tr>
+    <tr th:each="song: ${album.songs}">
+        <td th:text="${song.title}"></td>
+        <td th:text="${song.length}"></td>
+        <td th:text="${song.trackNumber}"></td>
+    </tr>
+</table>
+
+
+</center>
+</body>
+</html>
